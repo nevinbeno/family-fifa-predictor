@@ -23,8 +23,8 @@ try:
         niy = input(f"Enter Niya's response: ")
         cursor.execute(
             """
-            insert into Match_Result values 
-            (%d, %s, %s, %s)""", (match_id, rob, tan, nev, niy)
+            insert into Response values 
+            (%s, %s, %s, %s, %s)""", (match_id, rob, tan, nev, niy)
         )
     conn.commit()
     print(f"Responses added successfully. ")
