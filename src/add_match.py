@@ -33,5 +33,3 @@ except mysql.connector.Error as err:
 finally:
     cursor.close()
     conn.close()
-
-print(f"{n} Matches added.")
