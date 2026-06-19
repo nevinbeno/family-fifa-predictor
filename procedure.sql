@@ -16,3 +16,9 @@ begin
 end //
 
 delimiter ;
+
+-- to add match result
+CREATE DEFINER=`manager`@`localhost` PROCEDURE `add_result`(in id int, in result varchar(20))
+BEGIN
+	insert into Match_Result values (id, result);
+END
