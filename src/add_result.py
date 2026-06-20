@@ -12,11 +12,19 @@ conn = mysql.connector.connect(
 )
 
 cursor = conn.cursor()
-print(f"==  Add a Result ==")
-match_id = input("Match Number: ")
-result = input("Result: ")
+print(f"==  Add Result ==")
+n = int(input("No of matches: "))
 
-cursor.callproc("add_result", [match_id, result])
-conn.commit()
-
-print("Result added.")
+try:
+    for i in range(n):
+        match_id = int(input("Match Number: "))
+        result = input("Result: ")
+        cursor.callproc("add_result", [match_id, result])
+    conn.commit()
+    print(f"Results have been added successfully..")
+except mysql.connector.Error as err:
+    conn.rollback()
+    print(f"Database Error: {err}")
+finally:
+    cursor.close()
+    conn.close()
