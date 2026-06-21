@@ -1,147 +1,150 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FIFA Prediction League</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
-    <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>FIFA Prediction League</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+        <style>
+            *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        body {
-            font-family: system-ui, -apple-system, sans-serif;
-            background: #f5f5f0;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
+            body {
+                font-family: system-ui, -apple-system, sans-serif;
+                background: #f5f5f0;
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 2rem;
 
-            background-image: url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=1600&q=80');
-            background-size: cover;
-            background-position: center;
-        }
+                background-image: url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=1600&q=80');
+                background-size: cover;
+                background-position: center;
+            }
 
-        .container { max-width: 520px; width: 100%; }
+            .container { max-width: 520px; width: 100%; }
 
-        .header { text-align: center; margin-bottom: 2rem; }
-        .header h1 { font-size: 24px; font-weight: 600; color: #ffffff; }
-        .header p  { font-size: 14px; color: #00bcd4; margin-top: 4px; }
+            .header { text-align: center; margin-bottom: 2rem; }
+            .header h1 { font-size: 24px; font-weight: 600; color: #ffffff; }
+            .header p  { font-size: 14px; color: #00bcd4; margin-top: 4px; }
 
-        .leaderboard { display: flex; flex-direction: column; gap: 10px; }
+            .leaderboard { display: flex; flex-direction: column; gap: 10px; }
 
-        .row {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 14px 18px;
-            background: #ffffff;
-            border: 1px solid #e8e8e8;
-            border-radius: 12px;
-        }
-        .row.first { border: 2px solid #EF9F27; }
+            .row {
+                display: flex;
+                align-items: center;
+                gap: 14px;
+                padding: 14px 18px;
+                background: #ffffff;
+                border: 1px solid #e8e8e8;
+                border-radius: 12px;
+            }
+            .row.first { border: 2px solid #EF9F27; }
 
-        .rank { font-size: 13px; font-weight: 600; color: #aaa; min-width: 20px; text-align: center; }
-        .rank.gold { color: #BA7517; }
+            .rank { font-size: 13px; font-weight: 600; color: #aaa; min-width: 20px; text-align: center; }
+            .rank.gold { color: #BA7517; }
 
-        .avatar {
-            width: 40px; height: 40px;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 13px; font-weight: 600;
-            flex-shrink: 0;
-        }
-        .av-gold   { background: #FAEEDA; color: #633806; }
-        .av-silver { background: #f0f0ec; color: #444; }
-        .av-bronze { background: #FAECE7; color: #712B13; }
-        .av-other  { background: #f0f0ec; color: #888; }
+            .avatar {
+                width: 40px; height: 40px;
+                border-radius: 50%;
+                display: flex; align-items: center; justify-content: center;
+                font-size: 13px; font-weight: 600;
+                flex-shrink: 0;
+            }
+            .av-gold   { background: #FAEEDA; color: #633806; }
+            .av-silver { background: #f0f0ec; color: #444; }
+            .av-bronze { background: #FAECE7; color: #712B13; }
+            .av-other  { background: #f0f0ec; color: #888; }
 
-        .name { flex: 1; font-size: 15px; font-weight: 500; color: #1a1a1a; }
+            .name { flex: 1; font-size: 15px; font-weight: 500; color: #1a1a1a; }
 
-        .tied-badge {
-            font-size: 11px; color: #999;
-            background: #f5f5f0;
-            padding: 2px 8px;
-            border-radius: 999px;
-            border: 1px solid #e0e0d8;
-        }
+            .tied-badge {
+                font-size: 11px; color: #999;
+                background: #f5f5f0;
+                padding: 2px 8px;
+                border-radius: 999px;
+                border: 1px solid #e0e0d8;
+            }
 
-        .points { display: flex; align-items: baseline; gap: 3px; }
-        .pts-num   { font-size: 20px; font-weight: 600; color: #1a1a1a; }
-        .pts-label { font-size: 12px; color: #aaa; }
+            .points { display: flex; align-items: baseline; gap: 3px; }
+            .pts-num   { font-size: 20px; font-weight: 600; color: #1a1a1a; }
+            .pts-label { font-size: 12px; color: #aaa; }
 
-        .footer {
-            text-align: center;
-            margin-top: 1.5rem;
-            font-size: 12px;
-            color: #aaa;
-        }
-    </style>
-</head>
-<body>
-<div style="
-    position: fixed; inset: 0;
-    background: rgba(0, 0, 0, 0.55);
-    z-index: 0;
-"></div>
+            .footer {
+                text-align: center;
+                margin-top: 1.5rem;
+                font-size: 12px;
+                color: #aaa;
+            }
+        </style>
+    </head>
+    <body>
+    <div style="
+        position: fixed; inset: 0;
+        background: rgba(0, 0, 0, 0.55);
+        z-index: 0;
+    "></div>
 
-<div class="container" style="position: relative; z-index: 1;">
-    <div class="header">
-        <h1>&#127942; FIFA WC 2026 - Kid's Prediction League</h1>
-        <p>Season standings</p>
+    <div class="container" style="position: relative; z-index: 1;">
+        <div class="header">
+            <h1>&#127942; FIFA WC 2026 - Kid's Prediction League</h1>
+            <p>Season Standings</p>
+        </div>
+        <div class="leaderboard">
+    
+            <div class="row first">
+                <span class="rank gold">1</span>
+                <div class="avatar" style="font-size:22px; background:#f5f5f0; border:1px solid #e8e8e8;">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
+                <span class="name">Tanya</span>
+                
+                <div class="points">
+                    <span class="pts-num">3</span>
+                    <span class="pts-label">pts</span>
+                </div>
+                <span style="font-size:18px">🥇</span>
+            </div>
+        
+            <div class="row">
+                <span class="rank">2</span>
+                <div class="avatar" style="font-size:22px; background:#f5f5f0; border:1px solid #e8e8e8;">🇫🇷</div>
+                <span class="name">Robin</span>
+                
+                <div class="points">
+                    <span class="pts-num">2</span>
+                    <span class="pts-label">pts</span>
+                </div>
+                <span style="font-size:18px">🥈</span>
+            </div>
+        
+            <div class="row">
+                <span class="rank">2</span>
+                <div class="avatar" style="font-size:22px; background:#f5f5f0; border:1px solid #e8e8e8;">🇦🇷</div>
+                <span class="name">Nevin</span>
+                <span class="tied-badge">tied</span>
+                <div class="points">
+                    <span class="pts-num">2</span>
+                    <span class="pts-label">pts</span>
+                </div>
+                <span style="font-size:18px">🥈</span>
+            </div>
+        
+            <div class="row">
+                <span class="rank">2</span>
+                <div class="avatar" style="font-size:22px; background:#f5f5f0; border:1px solid #e8e8e8;">🇵🇹</div>
+                <span class="name">Niya</span>
+                <span class="tied-badge">tied</span>
+                <div class="points">
+                    <span class="pts-num">2</span>
+                    <span class="pts-label">pts</span>
+                </div>
+                <span style="font-size:18px">🥈</span>
+            </div>
+        
+        </div>
+        <p class="footer">
+            Last Updated: 21 Jun 2026, 02:57 PM IST
+        </p>
     </div>
-    <div class="leaderboard">
-
-        <div class="row first">
-            <span class="rank gold">1</span>
-            <div class="avatar" style="font-size:22px; background:#f5f5f0; border:1px solid #e8e8e8;">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
-            <span class="name">Tanya</span>
-            
-            <div class="points">
-                <span class="pts-num">3</span>
-                <span class="pts-label">pts</span>
-            </div>
-            <span style="font-size:18px">🥇</span>
-        </div>
+    </body>
+    </html>
     
-        <div class="row">
-            <span class="rank">2</span>
-            <div class="avatar" style="font-size:22px; background:#f5f5f0; border:1px solid #e8e8e8;">🇫🇷</div>
-            <span class="name">Robin</span>
-            
-            <div class="points">
-                <span class="pts-num">2</span>
-                <span class="pts-label">pts</span>
-            </div>
-            <span style="font-size:18px">🥈</span>
-        </div>
-    
-        <div class="row">
-            <span class="rank">2</span>
-            <div class="avatar" style="font-size:22px; background:#f5f5f0; border:1px solid #e8e8e8;">🇦🇷</div>
-            <span class="name">Nevin</span>
-            <span class="tied-badge">tied</span>
-            <div class="points">
-                <span class="pts-num">2</span>
-                <span class="pts-label">pts</span>
-            </div>
-            <span style="font-size:18px">🥈</span>
-        </div>
-    
-        <div class="row">
-            <span class="rank">2</span>
-            <div class="avatar" style="font-size:22px; background:#f5f5f0; border:1px solid #e8e8e8;">🇵🇹</div>
-            <span class="name">Niya</span>
-            <span class="tied-badge">tied</span>
-            <div class="points">
-                <span class="pts-num">2</span>
-                <span class="pts-label">pts</span>
-            </div>
-            <span style="font-size:18px">🥈</span>
-        </div>
-    
-    </div>
-    <p class="footer">Live standings</p>
-</div>
-</body>
-</html>
