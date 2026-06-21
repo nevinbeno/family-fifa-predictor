@@ -173,7 +173,7 @@ html += """
 </html>
 """
 
-with open("../frontend/index.html", "w") as f:
+with open("../index.html", "w") as f:
     f.write(html)
 
 print("Dashboard generated successfully!")
