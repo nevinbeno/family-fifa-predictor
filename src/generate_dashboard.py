@@ -111,7 +111,7 @@ def generate_dashboard():
 
             .footer {
                 text-align: center;
-                margin-top: 1.5rem;
+                margin-top: 1.3rem;
                 font-size: 12px;
                 color: #aaa;
             }
