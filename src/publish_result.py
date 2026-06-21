@@ -43,4 +43,4 @@ if __name__ == "__main__":
     # last_updated = datetime.now(ZoneInfo("Asia/Kolkata")).strftime("%d %b %Y, %I:%M %p IST")
     # msg = f"Update leaderboard {last_updated}"
     # print(f"{msg}")
-    1
+    publish_result()
