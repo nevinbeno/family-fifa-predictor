@@ -1,7 +1,7 @@
 # Workflow
 ## Google Forms to Database
 ```mermaid
-flowchart TD
+flowchart forms_to_db
     A[Google Form] --> B["Robin's Response"]@{shape: fr-rect}
     A --> C["Tanya's Response"]@{shape: fr-rect}
     A --> D["Nevin's Response"]@{shape: fr-rect}
