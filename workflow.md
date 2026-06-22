@@ -14,6 +14,6 @@ flowchart TD
     F --> Collect
     response["add_response.py"]@{shape: sl-rect}
     Collect --> response
-    database["Responses"]@{shape: lin-cyl}
+    database["fifa.Responses"]@{shape: lin-cyl}
     response --> database
 ```
