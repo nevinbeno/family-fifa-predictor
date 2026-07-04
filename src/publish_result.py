@@ -10,7 +10,7 @@ def publish_result():
     #     add_result()
     # except Exception as e:
     #     print(f"Failed to add result: {e}")
-    #     return
+    #     return 
     try:
         generate_dashboard()
         PROJECT_ROOT=Path(__file__).resolve().parent.parent
