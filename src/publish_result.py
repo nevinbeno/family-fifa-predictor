@@ -6,11 +6,11 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 
 def publish_result():
-    # try:
-    #     add_result()
-    # except Exception as e:
-    #     print(f"Failed to add result: {e}")
-    #     return 
+    try:
+        add_result()
+    except Exception as e:
+        print(f"Failed to add result: {e}")
+        return 
     try:
         generate_dashboard()
         PROJECT_ROOT=Path(__file__).resolve().parent.parent
